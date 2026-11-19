@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="uk" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Глибоке зволоження для будь-якого типу шкіри.">
+  <title>Сироватка з гіалуроновою кислотою | Лілея</title>
+  <link rel="icon" href="../images/logo.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/Montserrat-Variable.woff" as="font" type="font/woff" crossorigin>
+  <!-- Єдиний зовнішній файл стилів для всіх сторінок -->
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body id="top">
+  <!-- Шапка: фіксована (position: fixed), логотип зі scale при hover, назва з fade-in -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="../index.html" class="logo" aria-label="Лілея — на головну">
+        <img src="../images/logo.svg" alt="" width="52" height="52">
+        <span class="logo-text"><span class="site-title">Лілея</span><span class="tagline">Краса й затишок щодня</span></span>
+      </a>
+      <a href="../cart.html" class="cart-mini" aria-label="Кошик"><span aria-hidden="true">🛍</span><span class="cart-count is-empty" data-cart-count>0</span></a>
+      <!-- Мобільне меню: «бургер» на чекбоксі, без JavaScript -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Відкрити меню">
+      <label for="menu-toggle" class="burger" aria-hidden="true"><span></span><span></span><span></span></label>
+      <!-- Навігація: flexbox + transition; у «Каталозі» — випадне меню з translateY -->
+      <nav class="site-nav" aria-label="Головне меню">
+        <ul>
+          <li><a href="../index.html">Головна</a></li>
+          <li class="has-drop"><a href="../catalog.html">Каталог <span class="caret" aria-hidden="true">▾</span></a><ul class="dropdown"><li><a href="../catalog.html#cat-face">Обличчя</a></li><li><a href="../catalog.html#cat-body">Тіло</a></li><li><a href="../catalog.html#cat-hair">Волосся</a></li><li><a href="../catalog.html#cat-makeup">Макіяж</a></li><li><a href="../catalog.html#cat-perfume">Парфумерія</a></li><li><a href="../catalog.html#cat-home">Дім</a></li><li><a href="../catalog.html#cat-hygiene">Гігієна</a></li></ul></li>
+          <li><a href="../care.html">Догляд</a></li>
+          <li><a href="../blog.html">Блог</a></li>
+          <li><a href="../compare.html">Порівняння</a></li>
+          <li><a href="../contacts.html">Контакти</a></li>
+          <li class="nav-cart"><a href="../cart.html" class="cart-link"><span aria-hidden="true">🛍</span> Кошик <span class="cart-count is-empty" data-cart-count>0</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap page-head">
+      <p class="crumbs"><a href="../index.html" class="link-anim">Головна</a> / <a href="../catalog.html#cat-face" class="link-anim">Обличчя</a> / Сироватка з гіалуроновою кислотою</p>
+    </div>
+    <div class="wrap product">
+      <!-- Блок 1: галерея на радіокнопках (без JS) -->
+      <section class="panel slide-in gallery">
+        <input type="radio" name="g" id="g1" class="sr-only" checked><input type="radio" name="g" id="g2" class="sr-only"><input type="radio" name="g" id="g3" class="sr-only">
+        <div class="g-stage"><figure class="g-slide s1"><img src="../images/products/hyaluron-serum-1.svg" alt="Сироватка з гіалуроновою кислотою" width="520" height="520" loading="lazy"><figcaption>Упаковка</figcaption></figure><figure class="g-slide s2"><img src="../images/products/hyaluron-serum-2.svg" alt="Сироватка з гіалуроновою кислотою" width="520" height="520" loading="lazy"><figcaption>Текстура</figcaption></figure><figure class="g-slide s3"><img src="../images/products/hyaluron-serum-3.svg" alt="Сироватка з гіалуроновою кислотою" width="520" height="520" loading="lazy"><figcaption>Склад</figcaption></figure></div>
+        <div class="g-thumbs"><label for="g1" class="g-thumb t1" title="Упаковка"><img src="../images/products/hyaluron-serum-1.svg" alt="Сироватка з гіалуроновою кислотою" width="90" height="90" loading="lazy"></label><label for="g2" class="g-thumb t2" title="Текстура"><img src="../images/products/hyaluron-serum-2.svg" alt="Сироватка з гіалуроновою кислотою" width="90" height="90" loading="lazy"></label><label for="g3" class="g-thumb t3" title="Склад"><img src="../images/products/hyaluron-serum-3.svg" alt="Сироватка з гіалуроновою кислотою" width="90" height="90" loading="lazy"></label></div>
+        <span class="badge sale">−15%</span>
+      </section>
+
+      <!-- Блок 2: інформація про товар, вибір опції, обране, вкладки -->
+      <section class="panel slide-in d2 info">
+        <span class="card-line">Лілея Care · Обличчя</span>
+        <h1 class="fade-in">Сироватка з гіалуроновою кислотою</h1>
+        <span class="rating">★★★★★ <small>4.9 · 214 відгуків</small></span>
+        <div class="price-row"><p class="price"><strong>389 грн</strong> <s>459 грн</s></p><span class="eur">≈ 8 €</span></div>
+        <p class="lead">Глибоке зволоження для будь-якого типу шкіри.</p>
+        <div class="opts"><span class="opts-label">Об'єм:</span><input type="radio" name="opt" id="o0" class="sr-only" checked><label for="o0" class="chip">30 мл</label><input type="radio" name="opt" id="o1" class="sr-only"><label for="o1" class="chip">50 мл</label></div>
+        <div class="buy-row">
+          <button type="button" class="btn btn-buy" data-add="hyaluron-serum" data-with-options>Додати в кошик</button><a href="../cart.html" class="link-anim to-cart">Перейти в кошик →</a>
+          <input type="checkbox" id="fav" class="sr-only"><label for="fav" class="fav" title="В обране"><span class="heart">♥</span><span class="fav-off">В обране</span><span class="fav-on">В обраному</span></label>
+        </div>
+        <input type="radio" name="tab" id="tab-1" class="sr-only" checked>
+        <input type="radio" name="tab" id="tab-2" class="sr-only">
+        <input type="radio" name="tab" id="tab-3" class="sr-only">
+        <div class="tabs"><label for="tab-1">Опис</label><label for="tab-2">Склад</label><label for="tab-3">Застосування</label></div>
+        <div class="tab-panels">
+          <div class="tab-panel p1"><p>Легка сироватка з гіалуроновою кислотою трьох молекулярних ваг: велика утримує вологу на поверхні, середня й мала проникають глибше й наповнюють шкіру зсередини.</p><p>Текстура гелева, без запаху, швидко вбирається й не залишає липкості — добре лягає під крем і макіяж.</p><p><b>Для кого:</b> Усі типи шкіри. <b>Позначки:</b> хіти, знижки, веган.</p></div>
+          <div class="tab-panel p2"><p>Гіалуронова кислота 2 %, пантенол, алое вера, гліцерин.</p></div>
+          <div class="tab-panel p3"><p>Нанесіть 2–3 краплі на очищену вологу шкіру зранку та ввечері, потім крем.</p></div>
+        </div>
+      </section>
+
+      <!-- Блок 3: характеристики (прогрес-бари) -->
+      <section class="panel slide-in d3 specs">
+        <h2>Характеристики</h2>
+        <ul class="bars"><li><span class="bar-label">Зволоження<b>95%</b></span><span class="bar"><span class="bar-fill" style="--w:95%"></span></span></li><li><span class="bar-label">Легкість текстури<b>90%</b></span><span class="bar"><span class="bar-fill" style="--w:90%"></span></span></li><li><span class="bar-label">Заспокоєння<b>70%</b></span><span class="bar"><span class="bar-fill" style="--w:70%"></span></span></li></ul>
+        <table class="spec-table">
+          <tr><th>Лінійка</th><td>Лілея Care</td></tr>
+          <tr><th>Об'єм</th><td>30 мл / 50 мл</td></tr>
+          <tr><th>Для кого</th><td>Усі типи шкіри</td></tr>
+          <tr><th>Ціна</th><td>389 грн</td></tr>
+        </table>
+      </section>
+    </div>
+    <div class="wrap related">
+      <h2>Схожі товари</h2>
+      <div class="grid-cards">
+      <article class="card c-face t-new" style="--i:0">
+        <a class="card-link" href="../product/day-cream-spf.html" aria-label="Денний крем SPF 30"></a>
+        <div class="card-media">
+          <img src="../images/products/day-cream-spf-1.svg" alt="Денний крем SPF 30" width="400" height="400" loading="lazy">
+          <span class="badge new">Новинка</span>
+          <p class="card-reveal">Зволоження і захист від сонця щодня.</p>
+        </div>
+        <div class="card-body">
+          <span class="card-line">Лілея Care · Обличчя</span>
+          <h3>Денний крем SPF 30</h3>
+          <span class="rating" aria-label="Рейтинг 4.7 з 5">★★★★★ <small>4.7 (86)</small></span>
+          <p class="price"><strong>429 грн</strong></p>
+        </div>
+        <button type="button" class="btn-add" data-add="day-cream-spf">+ У кошик</button>
+      </article>
+      <article class="card c-face t-hit t-vegan" style="--i:1">
+        <a class="card-link" href="../product/micellar-water.html" aria-label="Міцелярна вода для чутливої шкіри"></a>
+        <div class="card-media">
+          <img src="../images/products/micellar-water-1.svg" alt="Міцелярна вода для чутливої шкіри" width="400" height="400" loading="lazy">
+          <span class="badge hit">Хіт</span>
+          <p class="card-reveal">Делікатно знімає макіяж, не стягує шкіру.</p>
+        </div>
+        <div class="card-body">
+          <span class="card-line">Лілея Care · Обличчя</span>
+          <h3>Міцелярна вода для чутливої шкіри</h3>
+          <span class="rating" aria-label="Рейтинг 4.8 з 5">★★★★★ <small>4.8 (342)</small></span>
+          <p class="price"><strong>189 грн</strong></p>
+        </div>
+        <button type="button" class="btn-add" data-add="micellar-water">+ У кошик</button>
+      </article>
+      <article class="card c-face t-vegan" style="--i:2">
+        <a class="card-link" href="../product/cleansing-foam.html" aria-label="Пінка для вмивання з центелою"></a>
+        <div class="card-media">
+          <img src="../images/products/cleansing-foam-1.svg" alt="Пінка для вмивання з центелою" width="400" height="400" loading="lazy">
+          
+          <p class="card-reveal">Повітряна пінка для щоденного очищення.</p>
+        </div>
+        <div class="card-body">
+          <span class="card-line">Лілея Care · Обличчя</span>
+          <h3>Пінка для вмивання з центелою</h3>
+          <span class="rating" aria-label="Рейтинг 4.6 з 5">★★★★★ <small>4.6 (128)</small></span>
+          <p class="price"><strong>249 грн</strong></p>
+        </div>
+        <button type="button" class="btn-add" data-add="cleansing-foam">+ У кошик</button>
+      </article>
+      <article class="card c-face t-sale" style="--i:3">
+        <a class="card-link" href="../product/sheet-masks.html" aria-label="Набір тканинних масок «П'ять вечорів»"></a>
+        <div class="card-media">
+          <img src="../images/products/sheet-masks-1.svg" alt="Набір тканинних масок «П'ять вечорів»" width="400" height="400" loading="lazy">
+          <span class="badge sale">−14%</span>
+          <p class="card-reveal">П'ять масок під різні потреби шкіри.</p>
+        </div>
+        <div class="card-body">
+          <span class="card-line">Лілея Care · Обличчя</span>
+          <h3>Набір тканинних масок «П'ять вечорів»</h3>
+          <span class="rating" aria-label="Рейтинг 4.5 з 5">★★★★☆ <small>4.5 (97)</small></span>
+          <p class="price"><strong>299 грн</strong> <s>349 грн</s></p>
+        </div>
+        <button type="button" class="btn-add" data-add="sheet-masks">+ У кошик</button>
+      </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- Футер: копірайт, соцмережі з анімацією bounce, кнопка «вгору» -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <p>&copy; 2026 [ПІБ студента]. «Лілея» — навчальний проєкт.</p>
+        <p class="footer-note">Оплата працює в тестовому режимі WayForPay.</p>
+      </div>
+      <ul class="socials"><li><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></li><li><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v7h4v-7h3l1-4h-4V8.6c0-.4.3-.6.6-.6z" fill="currentColor"/></svg></a></li><li><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></a></li><li><a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.5 2.6 2.4 4.3 5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a></li><li><a href="https://t.me/LileiaShopBot" target="_blank" rel="noopener" aria-label="Telegram-бот Лілея" title="Telegram-бот @LileiaShopBot"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 3.5L2.8 10.6c-.9.4-.9 1.6.1 1.9l4.6 1.5 1.7 5.4c.3.8 1.3 1 1.9.4l2.6-2.4 4.6 3.4c.7.5 1.7.1 1.9-.8L22.9 4.8c.2-1-.8-1.7-1.9-1.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a></li><li><a href="mailto:hello@lileia.com.ua" aria-label="E-mail"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li></ul>
+    </div>
+  </footer>
+  <a href="#top" class="to-top" aria-label="Нагору">↑</a>
+  <script src="../js/products.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>

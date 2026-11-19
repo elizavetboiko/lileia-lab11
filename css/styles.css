@@ -1,0 +1,2196 @@
+/* =====================================================================
+   Лаба 2 — динамічний сайт на CSS3 (без JavaScript)
+   Єдиний файл стилів для всіх сторінок. Розміри в rem/em.
+   Ключові ефекти: @keyframes (fade-in, slide-in, float, grow, bounce),
+   transition, transform (scale, rotate, translateY), filter (blur,
+   saturate), clip-path, linear-gradient, box-shadow з transition.
+   ===================================================================== */
+
+/* Коментар: власний шрифт через @font-face (змінний Montserrat, ліцензія OFL) */
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Variable.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Коментар: палітра й розміри як CSS-змінні */
+:root {
+  --primary: #7b4fa3;
+  --primary-dark: #4e2a6b;
+  --rose: #e8a0bf;
+  --rose-soft: #fbe9f1;
+  --sage: #7fb3a0;
+  --bg: #fbf8fc;
+  --text: #2b2233;
+  --muted: #6f6478;
+  --line: #eadff0;
+  --white: #ffffff;
+  --gradient: linear-gradient(135deg, #7b4fa3 0%, #e8a0bf 100%);
+  --gradient-soft: linear-gradient(135deg, #f6eefb 0%, #fbe9f1 60%, #eef6f2 100%);
+  --shadow: 0 0.25rem 1rem rgba(78, 42, 107, 0.08);
+  --shadow-hover: 0 0.9rem 2rem rgba(123, 79, 163, 0.22);
+  --radius: 1.1rem;
+  --header-h: 4.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Коментар: плавна прокрутка для кнопки «вгору» і якорів */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  padding-top: var(--header-h);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--primary);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--primary-dark);
+  line-height: 1.25;
+  /* Коментар: transition на font-size — заголовки плавно змінюють розмір на різних екранах */
+  -webkit-transition: font-size 0.3s ease;
+  transition: font-size 0.3s ease;
+}
+
+h1 {
+  font-size: 2.3rem;
+  margin: 0 0 0.6rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.9rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 1.2rem 0 0.6rem;
+}
+
+.wrap {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Коментар: Анімація для шапки — фіксована позиція, напівпрозорий фон з blur
+   --------------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: var(--header-h);
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+}
+
+/* Коментар: логотип збільшується й трохи повертається при hover (transform: scale) */
+.logo img {
+  width: 3.25rem;
+  height: 3.25rem;
+  -webkit-transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.logo:hover img {
+  -webkit-transform: scale(1.15) rotate(-6deg);
+  transform: scale(1.15) rotate(-6deg);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Коментар: назва сайту з анімацією появи (fade-in) */
+.site-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: 0.02em;
+  -webkit-animation: fadeIn 1s ease both;
+  animation: fadeIn 1s ease both;
+}
+
+.tagline {
+  font-size: 0.75rem;
+  color: var(--muted);
+  -webkit-animation: fadeIn 1s 0.3s ease both;
+  animation: fadeIn 1s 0.3s ease both;
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; -webkit-transform: translateY(-0.4rem); }
+  to { opacity: 1; -webkit-transform: none; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-0.4rem); }
+  to { opacity: 1; transform: none; }
+}
+
+.fade-in {
+  -webkit-animation: fadeIn 0.9s ease both;
+  animation: fadeIn 0.9s ease both;
+}
+
+/* ---------------------------------------------------------------------
+   Коментар: навігація — flexbox, transition: all 0.3s для кольору та розміру
+   --------------------------------------------------------------------- */
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.5rem 0.85rem;
+  border-radius: 2rem;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  background: var(--rose-soft);
+  color: var(--primary);
+  -webkit-transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+
+.site-nav a.active {
+  background: var(--gradient);
+  color: var(--white);
+  box-shadow: 0 0.4rem 1rem rgba(123, 79, 163, 0.3);
+}
+
+.caret {
+  display: inline-block;
+  font-size: 0.7em;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+/* Коментар: dropdown-меню висувається через transform: translateY */
+.has-drop {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 12rem;
+  padding: 0.5rem !important;
+  display: block !important;
+  background: var(--white);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-hover);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-0.75rem);
+  transform: translateY(-0.75rem);
+  -webkit-transition: opacity 0.3s ease, visibility 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown a {
+  border-radius: 0.6rem;
+}
+
+.has-drop:hover .dropdown,
+.has-drop:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0.4rem);
+  transform: translateY(0.4rem);
+}
+
+.has-drop:hover .caret {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* Мобільне меню (чекбокс + label) */
+.menu-toggle,
+.burger {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------
+   Кнопки й посилання
+   --------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border: 0;
+  border-radius: 2rem;
+  background: var(--gradient);
+  background-size: 200% 100%;
+  color: var(--white);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1.2rem rgba(123, 79, 163, 0.28);
+  -webkit-transition: background-position 0.5s ease, box-shadow 0.3s ease, -webkit-transform 0.3s ease;
+  transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn span {
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  background-position: 100% 0;
+  box-shadow: var(--shadow-hover);
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+
+.btn:hover span {
+  -webkit-transform: translateX(0.3rem);
+  transform: translateX(0.3rem);
+}
+
+/* Коментар: анімоване підкреслення посилань у тексті (scaleX) */
+.link-anim {
+  position: relative;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link-anim::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient);
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: right;
+  transform-origin: right;
+  -webkit-transition: -webkit-transform 0.35s ease;
+  transition: transform 0.35s ease;
+}
+
+.link-anim:hover::after,
+.link-anim:focus-visible::after {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transform-origin: left;
+  transform-origin: left;
+}
+
+/* ---------------------------------------------------------------------
+   Коментар: головний банер — градієнт і хвиля через clip-path
+   --------------------------------------------------------------------- */
+.hero {
+  background: var(--gradient-soft);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 86%, 75% 94%, 50% 88%, 25% 96%, 0 90%);
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 75% 94%, 50% 88%, 25% 96%, 0 90%);
+  padding: 3rem 0 5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.kicker {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero-art {
+  position: relative;
+  height: 20rem;
+}
+
+.hero-art img {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+
+.hero-art .f1 { width: 15rem; left: 18%; top: 0; }
+.hero-art .f2 { width: 11rem; right: 2%; top: 30%; }
+.hero-art .f3 { width: 10rem; left: 0; bottom: 0; }
+
+/* Коментар: ключові кадри для руху — товари плавно «пливуть» */
+.float {
+  -webkit-animation: float 6s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.f2 { -webkit-animation-delay: -2s; animation-delay: -2s; }
+.f3 { -webkit-animation-delay: -4s; animation-delay: -4s; }
+
+@-webkit-keyframes float {
+  0%, 100% { -webkit-transform: translateY(0) rotate(0); }
+  50% { -webkit-transform: translateY(-0.9rem) rotate(2deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-0.9rem) rotate(2deg); }
+}
+
+/* ---------------------------------------------------------------------
+   Сітки сторінок: CSS Grid, три блоки <section>
+   --------------------------------------------------------------------- */
+.page-head {
+  padding-top: 1.75rem;
+}
+
+.grid-3,
+.grid-cat,
+.grid-blog,
+.grid-compare,
+.product {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+  align-items: start;
+}
+
+.grid-3 { grid-template-columns: 1fr 1.15fr 1fr; }
+.grid-cat { grid-template-columns: 1fr 3fr; grid-template-rows: auto 1fr; }
+.grid-cat > section:last-child { align-self: start; position: sticky; top: calc(var(--header-h) + 1rem); }
+.grid-cat .catalog { grid-row: span 2; }
+.grid-blog { grid-template-columns: 1fr 2fr; }
+.grid-blog .articles { grid-column: 1 / -1; }
+.grid-compare { grid-template-columns: 1fr 2.4fr; }
+.grid-compare > :last-child { grid-column: 1; grid-row: 2; }
+.product { grid-template-columns: 1.05fr 1.15fr 0.85fr; }
+
+.panel {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  -webkit-transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+}
+
+.panel:hover {
+  box-shadow: 0 0.6rem 1.6rem rgba(78, 42, 107, 0.12);
+}
+
+/* Коментар: анімація slide-in для блоків при завантаженні сторінки */
+.slide-in {
+  -webkit-animation: slideIn 0.8s ease both;
+  animation: slideIn 0.8s ease both;
+  will-change: transform, opacity;
+}
+
+.slide-in.d2 { -webkit-animation-delay: 0.15s; animation-delay: 0.15s; }
+.slide-in.d3 { -webkit-animation-delay: 0.3s; animation-delay: 0.3s; }
+
+@-webkit-keyframes slideIn {
+  from { opacity: 0; -webkit-transform: translateX(-2rem); }
+  to { opacity: 1; -webkit-transform: none; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-2rem); }
+  to { opacity: 1; transform: none; }
+}
+
+.ticks {
+  list-style: none;
+  padding: 0;
+}
+
+.ticks li {
+  padding-left: 1.6rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+}
+
+.ticks li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--sage);
+  font-weight: 800;
+}
+
+/* Коментар: «Хіти» — зображення з rotate + scale при hover */
+.pop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.pop-item {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.pop-item img {
+  border-radius: 1rem;
+  margin-bottom: 0.4rem;
+  -webkit-transition: -webkit-transform 0.4s ease, -webkit-filter 0.4s ease;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  will-change: transform;
+}
+
+.pop-item:hover img {
+  -webkit-transform: rotate(-4deg) scale(1.08);
+  transform: rotate(-4deg) scale(1.08);
+  -webkit-filter: saturate(1.3);
+  filter: saturate(1.3);
+}
+
+.pop-item span {
+  display: block;
+}
+
+.pop-item b {
+  color: var(--primary);
+}
+
+/* ---------------------------------------------------------------------
+   Коментар: прогрес-бари — ширина анімується від 0 (@keyframes) і через transition при hover
+   --------------------------------------------------------------------- */
+.bars {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5rem;
+}
+
+.bars li {
+  margin-bottom: 0.75rem;
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.bar {
+  display: block;
+  height: 0.6rem;
+  border-radius: 1rem;
+  background: var(--rose-soft);
+  overflow: hidden;
+}
+
+.bar-fill {
+  display: block;
+  height: 100%;
+  width: var(--w);
+  border-radius: inherit;
+  background: var(--gradient);
+  -webkit-animation: grow 1.4s 0.4s ease both;
+  animation: grow 1.4s 0.4s ease both;
+  -webkit-transition: -webkit-filter 0.3s ease, width 0.6s ease;
+  transition: filter 0.3s ease, width 0.6s ease;
+}
+
+.bars li:hover .bar-fill {
+  -webkit-filter: brightness(1.15) saturate(1.3);
+  filter: brightness(1.15) saturate(1.3);
+}
+
+@-webkit-keyframes grow {
+  from { width: 0; }
+}
+
+@keyframes grow {
+  from { width: 0; }
+}
+
+/* ---------------------------------------------------------------------
+   Коментар: акордеон на чекбоксах — висота панелі анімується (max-height + transition)
+   --------------------------------------------------------------------- */
+.accordion {
+  border-top: 1px solid var(--line);
+}
+
+.acc-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.acc-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--primary-dark);
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.acc-head::after {
+  content: "+";
+  flex: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--primary);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.acc-head:hover {
+  color: var(--primary);
+}
+
+.acc-panel {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.45s ease;
+  transition: max-height 0.45s ease;
+}
+
+.acc-inner p {
+  margin: 0 0 0.8rem;
+  font-size: 0.92rem;
+}
+
+.acc-toggle:checked ~ .acc-panel {
+  max-height: 16rem;
+}
+
+.acc-toggle:checked + .acc-head::after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.acc-toggle:focus-visible + .acc-head {
+  outline: 2px solid var(--primary);
+}
+
+.acc-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------
+   Каталог: фільтри-«чіпи» та картки товарів
+   --------------------------------------------------------------------- */
+.anchor {
+  display: block;
+  position: relative;
+  top: calc(-1 * var(--header-h) - 1rem);
+}
+
+.filters {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  background: var(--white);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  -webkit-transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+
+.chip.all {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.filter-empty {
+  display: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--rose-soft);
+  text-align: center;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+  gap: 1rem;
+}
+
+/* Коментар: картка товару — підйом, тінь, zoom фото, clip-path-«шторка» з описом */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  -webkit-animation: fadeIn 0.6s calc(var(--i) * 0.05s) ease both;
+  animation: fadeIn 0.6s calc(var(--i) * 0.05s) ease both;
+  -webkit-transition: -webkit-transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  will-change: transform;
+}
+
+.card:hover {
+  -webkit-transform: translateY(-6px);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--rose);
+}
+
+.card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.card-media {
+  position: relative;
+  overflow: hidden;
+  background: #faf6fb;
+}
+
+.card-media img {
+  width: 100%;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-media img {
+  -webkit-transform: scale(1.08) rotate(2deg);
+  transform: scale(1.08) rotate(2deg);
+}
+
+.card-reveal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0.8rem;
+  background: rgba(78, 42, 107, 0.88);
+  color: var(--white);
+  font-size: 0.82rem;
+  -webkit-clip-path: inset(100% 0 0 0);
+  clip-path: inset(100% 0 0 0);
+  -webkit-transition: -webkit-clip-path 0.4s ease;
+  transition: clip-path 0.4s ease;
+}
+
+.card:hover .card-reveal {
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+}
+
+.badge {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  z-index: 1;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--white);
+  background: var(--primary);
+}
+
+.badge.sale { background: #d6457a; }
+.badge.new { background: var(--sage); }
+
+.card-body {
+  padding: 0.8rem 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.card-body h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.card-line {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rating {
+  color: #e2a43b;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.rating small {
+  color: var(--muted);
+}
+
+.price {
+  margin: auto 0 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.price strong {
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+}
+
+.price s {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------------------------
+   Сторінка «Догляд»: кроки з CSS-лічильником (counter)
+   --------------------------------------------------------------------- */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: step;
+}
+
+.step {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.7rem;
+  border-radius: 1rem;
+  position: relative;
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+
+.step::before {
+  content: counter(step);
+  position: absolute;
+  left: 0.2rem;
+  top: 0.2rem;
+  z-index: 1;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: var(--white);
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: grid;
+  place-items: center;
+}
+
+.step:hover {
+  background: var(--rose-soft);
+}
+
+.step img {
+  border-radius: 1rem;
+  -webkit-transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease;
+}
+
+.step:hover img {
+  -webkit-transform: scale(1.1) rotate(-5deg);
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.step h3 {
+  margin: 0;
+}
+
+.step p {
+  margin: 0.2rem 0;
+  font-size: 0.88rem;
+}
+
+/* ---------------------------------------------------------------------
+   Блог: filter: blur на фото сусідніх карток і підсвічування статті через :target
+   --------------------------------------------------------------------- */
+.posts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.post {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  -webkit-transition: -webkit-filter 0.4s ease, opacity 0.4s ease, -webkit-transform 0.4s ease;
+  transition: filter 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Коментар: коли курсор над однією карткою — інші розмиваються (filter: blur) */
+.posts:hover .post:not(:hover) {
+  -webkit-filter: blur(2px) grayscale(0.3);
+  filter: blur(2px) grayscale(0.3);
+  opacity: 0.7;
+}
+
+.post:hover {
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+}
+
+.post-media {
+  overflow: hidden;
+  max-height: 11rem;
+}
+
+.post-media img {
+  width: 100%;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+}
+
+.post:hover .post-media img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.post-body {
+  padding: 0.9rem 1rem 1.1rem;
+}
+
+.post-body h3 {
+  margin: 0.2rem 0 0.4rem;
+}
+
+.post-body p {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+}
+
+.post-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.more {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.more span {
+  display: inline-block;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.more:hover span {
+  -webkit-transform: translateX(0.4rem);
+  transform: translateX(0.4rem);
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.articles h2 {
+  grid-column: 1 / -1;
+}
+
+.article {
+  padding: 1rem 1.2rem;
+  border-radius: 1rem;
+  background: var(--bg);
+  border: 2px solid transparent;
+  -webkit-transition: border-color 0.4s ease, background 0.4s ease;
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+.article h3 {
+  margin-top: 0;
+}
+
+.article:target {
+  border-color: var(--primary);
+  background: var(--rose-soft);
+  -webkit-animation: pulse 1.2s ease 2;
+  animation: pulse 1.2s ease 2;
+}
+
+@-webkit-keyframes pulse {
+  50% { box-shadow: 0 0 0 0.5rem rgba(123, 79, 163, 0.15); }
+}
+
+@keyframes pulse {
+  50% { box-shadow: 0 0 0 0.5rem rgba(123, 79, 163, 0.15); }
+}
+
+/* ---------------------------------------------------------------------
+   Таблиці порівняння: підсвічування рядка при hover
+   --------------------------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+th,
+td {
+  padding: 0.6rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+thead th {
+  background: var(--primary-dark);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+}
+
+thead th:first-child { border-radius: 0.6rem 0 0 0; }
+thead th:last-child { border-radius: 0 0.6rem 0 0; }
+
+.compare tbody tr {
+  -webkit-transition: background 0.3s ease, -webkit-transform 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.compare tbody tr:hover {
+  background: var(--rose-soft);
+}
+
+.num {
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------------
+   Контакти: поля з «плаваючими» підписами та анімована кнопка
+   --------------------------------------------------------------------- */
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.contact-list span {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.field {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 1.25rem 0.9rem 0.5rem;
+  border: 2px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--bg);
+  font: inherit;
+  color: var(--text);
+  -webkit-transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--white);
+  box-shadow: 0 0 0 0.3rem rgba(123, 79, 163, 0.15);
+}
+
+.field label {
+  position: absolute;
+  left: 0.95rem;
+  top: 0.95rem;
+  color: var(--muted);
+  pointer-events: none;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:focus + label,
+.field textarea:not(:placeholder-shown) + label,
+.field label.fixed {
+  top: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--primary);
+}
+
+/* Коментар: кнопка відправки — «дихає» (@keyframes) і зсуває стрілку при hover */
+.btn-send {
+  -webkit-animation: breathe 2.8s ease-in-out infinite;
+  animation: breathe 2.8s ease-in-out infinite;
+}
+
+.btn-send:hover {
+  -webkit-animation: none;
+  animation: none;
+}
+
+.btn-send:active {
+  -webkit-transform: scale(0.96);
+  transform: scale(0.96);
+}
+
+@-webkit-keyframes breathe {
+  50% { box-shadow: 0 0.5rem 1.8rem rgba(232, 160, 191, 0.75); }
+}
+
+@keyframes breathe {
+  50% { box-shadow: 0 0.5rem 1.8rem rgba(232, 160, 191, 0.75); }
+}
+
+.map {
+  margin: 0 0 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.map img {
+  -webkit-transition: -webkit-transform 0.6s ease;
+  transition: transform 0.6s ease;
+}
+
+.map:hover img {
+  -webkit-transform: scale(1.12);
+  transform: scale(1.12);
+}
+
+/* ---------------------------------------------------------------------
+   Сторінка товару: галерея, опції, «обране», вкладки
+   --------------------------------------------------------------------- */
+.crumbs {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.gallery {
+  position: relative;
+}
+
+.g-stage {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #faf6fb;
+}
+
+.g-slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  -webkit-transform: scale(0.94);
+  transform: scale(0.94);
+  -webkit-transition: opacity 0.5s ease, -webkit-transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.g-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.g-slide figcaption {
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.8rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 1rem;
+  background: rgba(43, 34, 51, 0.75);
+  color: var(--white);
+  font-size: 0.75rem;
+}
+
+#g1:checked ~ .g-stage .s1,
+#g2:checked ~ .g-stage .s2,
+#g3:checked ~ .g-stage .s3 {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+}
+
+.g-thumbs {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.g-thumb {
+  width: 4.5rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  opacity: 0.7;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.g-thumb:hover {
+  opacity: 1;
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+
+#g1:checked ~ .g-thumbs .t1,
+#g2:checked ~ .g-thumbs .t2,
+#g3:checked ~ .g-thumbs .t3 {
+  border-color: var(--primary);
+  opacity: 1;
+}
+
+.info h1 {
+  font-size: 1.7rem;
+  margin: 0.2rem 0 0.4rem;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin: 0.6rem 0;
+}
+
+.price-row .price strong {
+  font-size: 1.6rem;
+}
+
+.eur {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.lead {
+  font-weight: 600;
+}
+
+.opts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.8rem 0;
+}
+
+.opts-label {
+  font-weight: 700;
+  margin-right: 0.3rem;
+}
+
+.opts input:checked + .chip {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+.opts input:focus-visible + .chip {
+  outline: 2px solid var(--primary);
+}
+
+.buy-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+/* Коментар: «В обране» на чекбоксі — серце збільшується та змінює колір */
+.fav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--line);
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: 600;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.heart {
+  color: #c8bccf;
+  font-size: 1.2rem;
+  -webkit-transition: color 0.3s ease, -webkit-transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.fav-on {
+  display: none;
+}
+
+#fav:checked + .fav {
+  border-color: #d6457a;
+  color: #d6457a;
+}
+
+#fav:checked + .fav .heart {
+  color: #d6457a;
+  -webkit-animation: heartbeat 0.6s ease;
+  animation: heartbeat 0.6s ease;
+}
+
+#fav:checked + .fav .fav-on {
+  display: inline;
+}
+
+#fav:checked + .fav .fav-off {
+  display: none;
+}
+
+@-webkit-keyframes heartbeat {
+  30% { -webkit-transform: scale(1.5); }
+  60% { -webkit-transform: scale(0.9); }
+}
+
+@keyframes heartbeat {
+  30% { transform: scale(1.5); }
+  60% { transform: scale(0.9); }
+}
+
+/* Коментар: вкладки на радіокнопках — підкреслення активної вкладки */
+.tabs {
+  display: flex;
+  gap: 0.3rem;
+  border-bottom: 2px solid var(--line);
+  margin-top: 1rem;
+}
+
+.tabs label {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--muted);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  -webkit-transition: color 0.3s ease, border-color 0.3s ease;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.tabs label:hover {
+  color: var(--primary);
+}
+
+#tab-1:checked ~ .tabs label[for="tab-1"],
+#tab-2:checked ~ .tabs label[for="tab-2"],
+#tab-3:checked ~ .tabs label[for="tab-3"] {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.tab-panel {
+  display: none;
+  padding-top: 0.6rem;
+  -webkit-animation: fadeIn 0.4s ease;
+  animation: fadeIn 0.4s ease;
+}
+
+#tab-1:checked ~ .tab-panels .p1,
+#tab-2:checked ~ .tab-panels .p2,
+#tab-3:checked ~ .tab-panels .p3 {
+  display: block;
+}
+
+.spec-table th {
+  width: 40%;
+  color: var(--muted);
+  font-weight: 600;
+  background: none;
+  position: static;
+}
+
+.related {
+  margin-bottom: 3rem;
+}
+
+.related .grid-cards {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.price-row .price {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Футер: соцмережі з анімацією bounce, кнопка «вгору»
+   --------------------------------------------------------------------- */
+.site-footer {
+  background: linear-gradient(135deg, var(--primary-dark), #2b2233);
+  color: var(--white);
+  padding: 1.6rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.site-footer p {
+  margin: 0.2rem 0;
+}
+
+.footer-note {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.socials {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+
+.socials a:hover {
+  background: var(--rose);
+  color: var(--primary-dark);
+  -webkit-animation: bounce 0.6s ease;
+  animation: bounce 0.6s ease;
+}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: translateY(0); }
+  30% { -webkit-transform: translateY(-0.6rem); }
+  60% { -webkit-transform: translateY(-0.2rem); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-0.6rem); }
+  60% { transform: translateY(-0.2rem); }
+}
+
+.to-top {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 40;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: var(--white);
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: var(--shadow-hover);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.to-top:hover {
+  -webkit-transform: translateY(-4px) scale(1.08);
+  transform: translateY(-4px) scale(1.08);
+}
+
+/* ---------------------------------------------------------------------
+   Адаптивність: media queries
+   --------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .grid-3,
+  .product {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-3 > :last-child,
+  .product > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .grid-cat,
+  .grid-compare {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-cat .catalog {
+    grid-row: auto;
+  }
+
+  .grid-compare > :last-child {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .site-nav a {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 860px) {
+  /* Коментар: на телефоні меню відкривається «бургером» (чекбокс) і висувається зверху */
+  .burger {
+    display: grid;
+    gap: 0.3rem;
+    width: 2.6rem;
+    padding: 0.55rem;
+    border-radius: 0.7rem;
+    background: var(--rose-soft);
+    cursor: pointer;
+  }
+
+  .burger span {
+    height: 2px;
+    background: var(--primary-dark);
+    border-radius: 2px;
+    -webkit-transition: -webkit-transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    right: 1.25rem;
+    margin: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .menu-toggle:checked + .burger span:nth-child(1) {
+    -webkit-transform: translateY(0.4rem) rotate(45deg);
+    transform: translateY(0.4rem) rotate(45deg);
+  }
+
+  .menu-toggle:checked + .burger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle:checked + .burger span:nth-child(3) {
+    -webkit-transform: translateY(-0.4rem) rotate(-45deg);
+    transform: translateY(-0.4rem) rotate(-45deg);
+  }
+
+  .site-nav {
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    background: var(--white);
+    box-shadow: var(--shadow-hover);
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height 0.4s ease;
+    transition: max-height 0.4s ease;
+  }
+
+  .menu-toggle:checked ~ .site-nav {
+    max-height: 32rem;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.6rem 1rem 1rem;
+  }
+
+  .dropdown {
+    display: none !important;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-art {
+    height: 13rem;
+  }
+
+  .hero-art .f1 { width: 10rem; left: 30%; }
+  .hero-art .f2 { width: 7.5rem; }
+  .hero-art .f3 { width: 7rem; }
+
+  .posts,
+  .articles {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-blog {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-3,
+  .product {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .tagline {
+    display: none;
+  }
+
+  .panel {
+    padding: 1.1rem;
+  }
+
+  .grid-cards,
+  .related .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+  }
+
+  .pop-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Коментар: повага до налаштування «зменшити рух» */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    -webkit-animation-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    -webkit-transition-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+a[href^="tel:"] {
+  white-space: nowrap;
+}
+
+/* Фільтри каталогу: розділ через :target (працює й з посилань меню), позначка через :checked */
+#cat-face:target ~ .grid-cards .card:not(.c-face) { display: none; }
+#cat-face:target ~ .filters a[data-cat="face"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#cat-body:target ~ .grid-cards .card:not(.c-body) { display: none; }
+#cat-body:target ~ .filters a[data-cat="body"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#cat-hair:target ~ .grid-cards .card:not(.c-hair) { display: none; }
+#cat-hair:target ~ .filters a[data-cat="hair"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#cat-makeup:target ~ .grid-cards .card:not(.c-makeup) { display: none; }
+#cat-makeup:target ~ .filters a[data-cat="makeup"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#cat-perfume:target ~ .grid-cards .card:not(.c-perfume) { display: none; }
+#cat-perfume:target ~ .filters a[data-cat="perfume"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#cat-home:target ~ .grid-cards .card:not(.c-home) { display: none; }
+#cat-home:target ~ .filters a[data-cat="home"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#cat-hygiene:target ~ .grid-cards .card:not(.c-hygiene) { display: none; }
+#cat-hygiene:target ~ .filters a[data-cat="hygiene"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+.anchor:target ~ .filters a.all { background: #fff; color: var(--text); border-color: var(--line); }
+#tag-new:checked ~ .grid-cards .card:not(.t-new) { display: none; }
+#tag-new:checked ~ .filters label[for="tag-new"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#tag-hit:checked ~ .grid-cards .card:not(.t-hit) { display: none; }
+#tag-hit:checked ~ .filters label[for="tag-hit"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#tag-sale:checked ~ .grid-cards .card:not(.t-sale) { display: none; }
+#tag-sale:checked ~ .filters label[for="tag-sale"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#tag-vegan:checked ~ .grid-cards .card:not(.t-vegan) { display: none; }
+#tag-vegan:checked ~ .filters label[for="tag-vegan"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#tag-all:checked ~ .filters label[for="tag-all"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+#cat-body:target ~ #tag-new:checked ~ .filter-empty { display: block; }
+#cat-body:target ~ #tag-sale:checked ~ .filter-empty { display: block; }
+#cat-perfume:target ~ #tag-sale:checked ~ .filter-empty { display: block; }
+#cat-perfume:target ~ #tag-vegan:checked ~ .filter-empty { display: block; }
+#cat-hygiene:target ~ #tag-new:checked ~ .filter-empty { display: block; }
+#cat-hygiene:target ~ #tag-hit:checked ~ .filter-empty { display: block; }
+#cat-hygiene:target ~ #tag-sale:checked ~ .filter-empty { display: block; }
+
+/* =====================================================================
+   Лаба 11 — доповнення для магазину: кошик, кнопки «У кошик», оформлення
+   ===================================================================== */
+
+/* Кошик у меню й лічильник, що «підстрибує» при додаванні */
+.cart-link {
+  display: flex !important;
+  align-items: center;
+  gap: 0.35rem;
+  border: 2px solid var(--rose);
+}
+
+.cart-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.35rem;
+  border-radius: 1rem;
+  background: var(--primary);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.cart-count.is-empty {
+  background: #cdbfd8;
+}
+
+.cart-count.bump {
+  -webkit-animation: bump 0.5s ease;
+  animation: bump 0.5s ease;
+}
+
+@keyframes bump {
+  40% { transform: scale(1.5); }
+}
+
+.cart-mini {
+  display: none;
+  margin-left: auto;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 1rem;
+  background: var(--rose-soft);
+  text-decoration: none;
+}
+
+/* Кнопка «+ У кошик» на картці — над «розтягнутим» посиланням картки */
+.btn-add {
+  position: relative;
+  z-index: 3;
+  margin: 0 0.9rem 0.9rem;
+  padding: 0.55rem;
+  border: 2px solid var(--primary);
+  border-radius: 2rem;
+  background: var(--white);
+  color: var(--primary);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-add.added,
+.btn-buy.added {
+  animation: added 0.6s ease;
+}
+
+@keyframes added {
+  30% { transform: scale(0.94); }
+  60% { transform: scale(1.05); }
+}
+
+.to-cart {
+  font-size: 0.9rem;
+}
+
+/* Спливне повідомлення */
+.cart-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.4rem;
+  z-index: 60;
+  max-width: 92vw;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1rem;
+  background: var(--primary-dark);
+  color: var(--white);
+  box-shadow: var(--shadow-hover);
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 1rem);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cart-toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.cart-toast a {
+  color: var(--rose);
+  font-weight: 700;
+  margin-left: 0.4rem;
+}
+
+/* ---------- Сторінка кошика ---------- */
+.cart-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  margin-bottom: 2.5rem;
+}
+
+.cart-app.is-empty .cart-grid {
+  display: none;
+}
+
+.cart-empty {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.cart-empty-ico {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.cart-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-line {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr auto auto auto;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cl-img img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 0.8rem;
+  background: #faf6fb;
+}
+
+.cl-name {
+  display: block;
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.cl-opts,
+.cl-unit {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.cl-qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.cl-qty button {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: var(--rose-soft);
+  color: var(--primary-dark);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cl-qty input {
+  width: 2.6rem;
+  border: 0;
+  text-align: center;
+  font: inherit;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.cl-qty input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.cl-sum {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.cl-sum span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.cl-remove {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.cl-remove:hover {
+  background: #fde3ec;
+  color: #d6457a;
+}
+
+.cart-sum {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.cart-sum p {
+  margin: 0;
+}
+
+.cart-total strong {
+  font-size: 1.4rem;
+  color: var(--primary-dark);
+}
+
+#sum-eur {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.btn-link {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  text-decoration: underline;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Форма оформлення */
+.checkout fieldset {
+  border: 0;
+  margin: 0 0 0.8rem;
+  padding: 0;
+}
+
+.checkout legend {
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+
+.checkout label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.2rem;
+}
+
+.checkout input:not([type="radio"]):not([type="checkbox"]),
+.checkout textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 2px solid var(--line);
+  border-radius: 0.8rem;
+  background: var(--bg);
+  font: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.checkout input:focus,
+.checkout textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(123, 79, 163, 0.15);
+}
+
+.ship-options {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.checkout .ship-options input[type="radio"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  clip-path: inset(50%);
+}
+
+.checkout .ship-options label {
+  margin: 0;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ship-options input:checked + label {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+.ship-options input:focus-visible + label {
+  outline: 2px solid var(--primary);
+}
+
+.checkout .check {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: 500;
+}
+
+.btn-pay {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.8rem;
+}
+
+.test-note {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-left: 4px solid #e2a43b;
+  border-radius: 0.6rem;
+  background: #fff8ea;
+  font-size: 0.85rem;
+}
+
+.test-note code {
+  background: var(--white);
+  padding: 0 0.25rem;
+  border-radius: 0.3rem;
+}
+
+.cart-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.cart-note a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+@media (max-width: 860px) {
+  .cart-mini {
+    display: inline-flex;
+  }
+
+  .nav-cart {
+    display: none;
+  }
+
+  .cart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-line {
+    grid-template-columns: 3.5rem 1fr auto;
+  }
+
+  .cl-img img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .cl-qty {
+    grid-column: 2;
+  }
+
+  .cl-sum {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .cl-remove {
+    grid-column: 3;
+    justify-self: end;
+  }
+}
+
+/* Сторінка правил доставки та оплати */
+.rules {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  margin-bottom: 2.5rem;
+}
+
+.rules ul {
+  padding-left: 1.2rem;
+}
+
+.rules li {
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 860px) {
+  .rules {
+    grid-template-columns: 1fr;
+  }
+}
