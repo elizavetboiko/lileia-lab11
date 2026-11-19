@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Інтернет-магазин косметики, засобів догляду та товарів для дому з доставкою по Україні.">
-  <title>Порівняння | Лілея</title>
-  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <meta name="description" content="Косметика й домашні засоби з підказками про склад, упаковку та застосування.">
+  <title>Порівняння | Пінолист</title>
+  <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="preload" href="fonts/Montserrat-Variable.woff" as="font" type="font/woff" crossorigin>
   <!-- Єдиний зовнішній файл стилів для всіх сторінок -->
   <link rel="stylesheet" href="css/styles.css">
@@ -14,9 +14,9 @@
   <!-- Шапка: фіксована (position: fixed), логотип зі scale при hover, назва з fade-in -->
   <header class="site-header">
     <div class="wrap header-inner">
-      <a href="index.html" class="logo" aria-label="Лілея — на головну">
-        <img src="images/logo.svg" alt="" width="52" height="52">
-        <span class="logo-text"><span class="site-title">Лілея</span><span class="tagline">Краса й затишок щодня</span></span>
+      <a href="index.html" class="logo" aria-label="Пінолист — на головну">
+        <img src="images/logo.png" alt="" width="52" height="52">
+        <span class="logo-text"><span class="site-title">Пінолист</span><span class="tagline">Від умивальника до кухонної полиці</span></span>
       </a>
       <a href="cart.html" class="cart-mini" aria-label="Кошик"><span aria-hidden="true">🛍</span><span class="cart-count is-empty" data-cart-count>0</span></a>
       <!-- Мобільне меню: «бургер» на чекбоксі, без JavaScript -->
@@ -44,8 +44,8 @@
     <div class="wrap grid-compare">
       <!-- Блок 1: вступ з анімацією slide-in -->
       <section class="panel slide-in">
-        <h2>Порівняйте засоби</h2>
-        <p>Таблиці допомагають швидко побачити різницю між схожими товарами: для кого вони, що в складі та скільки коштують. Наведіть курсор на рядок, щоб виділити його.</p>
+        <h2>Засоби поруч</h2>
+        <p>У кожному рядку видно призначення, основні інгредієнти та ціну. Відкрийте назву товару, щоб уточнити об’єм і спосіб застосування.</p>
       </section>
       <!-- Блок 2: таблиці порівняння, рядки підсвічуються при hover (transition) -->
       <section class="panel slide-in d2">
@@ -53,8 +53,8 @@
       </section>
       <!-- Блок 3: акордеон -->
       <section class="panel slide-in d3">
-        <h2>Як читати склад</h2>
-        <div class="accordion"><div class="acc-item"><input type="checkbox" id="ing0" class="acc-toggle" checked><label for="ing0" class="acc-head">Порядок інгредієнтів</label><div class="acc-panel"><div class="acc-inner"><p>Інгредієнти вказують за спаданням концентрації: перші 5–6 складають основу засобу.</p></div></div></div><div class="acc-item"><input type="checkbox" id="ing1" class="acc-toggle"><label for="ing1" class="acc-head">Відсотки на упаковці</label><div class="acc-panel"><div class="acc-inner"><p>Якщо виробник вказує відсоток активного інгредієнта, це допомагає порівнювати засоби між собою.</p></div></div></div><div class="acc-item"><input type="checkbox" id="ing2" class="acc-toggle"><label for="ing2" class="acc-head">Ароматизатори</label><div class="acc-panel"><div class="acc-inner"><p>Позначаються як «parfum» або «fragrance». Людям із чутливою шкірою краще обирати засоби без них.</p></div></div></div></div>
+        <h2>Що звірити після порівняння</h2>
+        <div class="accordion"><div class="acc-item"><input type="checkbox" id="ing0" class="acc-toggle" checked><label for="ing0" class="acc-head">Кількість</label><div class="acc-panel"><div class="acc-inner"><p>Порівнюйте ціну однакових об’ємів або порахуйте вартість однієї капсули.</p></div></div></div><div class="acc-item"><input type="checkbox" id="ing1" class="acc-toggle"><label for="ing1" class="acc-head">Варіант</label><div class="acc-panel"><div class="acc-inner"><p>У макіяжі важливий номер відтінку. Для парфумерії та побутових засобів має значення й аромат.</p></div></div></div><div class="acc-item"><input type="checkbox" id="ing2" class="acc-toggle"><label for="ing2" class="acc-head">Склад</label><div class="acc-panel"><div class="acc-inner"><p>У короткому описі наведено основні компоненти. Повний перелік шукайте на упаковці.</p></div></div></div></div>
       </section>
     </div>
   </main>
@@ -63,10 +63,10 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div>
-        <p>&copy; 2026 [ПІБ студента]. «Лілея» — навчальний проєкт.</p>
+        <p>&copy; 2026 Єлизавета Бойко. «Пінолист» — навчальний проєкт.</p>
         <p class="footer-note">Оплата працює в тестовому режимі WayForPay.</p>
       </div>
-      <ul class="socials"><li><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></li><li><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v7h4v-7h3l1-4h-4V8.6c0-.4.3-.6.6-.6z" fill="currentColor"/></svg></a></li><li><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></a></li><li><a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.5 2.6 2.4 4.3 5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a></li><li><a href="https://t.me/LileiaShopBot" target="_blank" rel="noopener" aria-label="Telegram-бот Лілея" title="Telegram-бот @LileiaShopBot"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 3.5L2.8 10.6c-.9.4-.9 1.6.1 1.9l4.6 1.5 1.7 5.4c.3.8 1.3 1 1.9.4l2.6-2.4 4.6 3.4c.7.5 1.7.1 1.9-.8L22.9 4.8c.2-1-.8-1.7-1.9-1.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a></li><li><a href="mailto:hello@lileia.com.ua" aria-label="E-mail"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li></ul>
+      <ul class="socials"><li><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a></li><li><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v7h4v-7h3l1-4h-4V8.6c0-.4.3-.6.6-.6z" fill="currentColor"/></svg></a></li><li><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></a></li><li><a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 3c.5 2.6 2.4 4.3 5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a></li><li><a href="https://t.me/PinolystShopBot" target="_blank" rel="noopener" aria-label="Telegram-бот Пінолист" title="Telegram-бот @PinolystShopBot"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 3.5L2.8 10.6c-.9.4-.9 1.6.1 1.9l4.6 1.5 1.7 5.4c.3.8 1.3 1 1.9.4l2.6-2.4 4.6 3.4c.7.5 1.7.1 1.9-.8L22.9 4.8c.2-1-.8-1.7-1.9-1.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a></li><li><a href="mailto:hello@pinolyst.example" aria-label="E-mail"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></li></ul>
     </div>
   </footer>
   <a href="#top" class="to-top" aria-label="Нагору">↑</a>

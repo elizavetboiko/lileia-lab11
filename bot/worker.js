@@ -1,8 +1,8 @@
-// Лілея — Telegram-бот на Cloudflare Workers (безкоштовно, без власного сервера).
+// Пінолист — Telegram-бот на Cloudflare Workers (безкоштовно, без власного сервера).
 // Токен бота НЕ вписується в код: він зберігається в Cloudflare як секрет BOT_TOKEN.
 // Файл згенеровано скриптом tools/build.py з content/*.json.
 
-const SHOP = "https://\u0412\u0410\u0428-\u041b\u041e\u0413\u0406\u041d.github.io/lileia-lab11/";
+const SHOP = "https://elizavetboiko.github.io/pinolyst-lab11/";
 
 const PRODUCTS = [["hyaluron-serum", "Сироватка з гіалуроновою кислотою", 389], ["day-cream-spf", "Денний крем SPF 30", 429], ["micellar-water", "Міцелярна вода для чутливої шкіри", 189], ["shower-gel-lavender", "Гель для душу «Лавандове поле»", 159], ["hand-cream", "Крем для рук «Півонія»", 89], ["mascara", "Туш для вій «Об'єм і довжина»", 249], ["eau-de-toilette", "Туалетна вода «Квітковий ранок»", 649], ["laundry-gel", "Гель для прання кольорових речей", 349]];
 
@@ -17,7 +17,7 @@ const MAIN_KEYBOARD = {
 };
 
 const TEXTS = {
-  start: "💜 <b>Лілея</b> — косметика, догляд і товари для дому.\n\nНатисніть <b>«🛍 Відкрити магазин»</b>, додайте товари в кошик, оберіть доставку й оплатіть онлайн (WayForPay).\n\nКоманди: /catalog — хіти каталогу, /rules — доставка й оплата, /contacts — контакти.",
+  start: "Вітаємо у <b>«Пінолист»</b>! Натисніть <b>«🛍 Відкрити магазин»</b>, щоб перейти до товарів і навчального кошика.\n\n/catalog — добірка товарів\n/rules — доставка й оплата\n/contacts — адреса та години видачі",
   catalog: () =>
     "📦 <b>Хіти каталогу</b>\n\n" +
     PRODUCTS.map(([id, name, price]) => `• <a href="${SHOP}product/${id}.html">${name}</a> — ${uah(price)}`).join("\n") +
@@ -32,13 +32,13 @@ const TEXTS = {
 Онлайн карткою Visa / Mastercard, Apple Pay чи Google Pay через WayForPay або під час отримання.
 
 Повні правила: ${SHOP}rules/`,
-  contacts: `📞 <b>Контакти магазину «Лілея»</b>
-E-mail: hello@lileia.com.ua
+  contacts: `📞 <b>Контакти магазину «Пінолист»</b>
+E-mail: hello@pinolyst.example
 Телефон: +380 44 765 43 21
 Самовивіз: м. Київ, вул. Саксаганського, 41
 Графік: пн–сб 10:00–20:00, нд 11:00–18:00
 Сайт: ${SHOP}`,
-  unknown: "Не зрозумів 🙂 Оберіть дію кнопкою нижче або надішліть /start.",
+  unknown: "Оберіть кнопку під повідомленням або введіть /start, щоб повернутися до меню.",
 };
 
 async function tg(env, method, body) {
@@ -62,7 +62,7 @@ function reply(env, chatId, key) {
 
 export default {
   async fetch(request, env) {
-    if (request.method !== "POST") return new Response("Лілея bot працює ✅");
+    if (request.method !== "POST") return new Response("Пінолист bot працює ✅");
     const update = await request.json().catch(() => null);
     if (!update) return new Response("ok");
 

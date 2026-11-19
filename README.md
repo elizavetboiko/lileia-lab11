@@ -1,6 +1,6 @@
-# Лабораторна робота №11 — інтернет-магазин і Telegram-бот «Лілея»
+# Лабораторна робота №11 — інтернет-магазин і Telegram-бот «Пінолист»
 
-**Автор:** [ПІБ студента], група [група]
+**Автор:** Єлизавета Бойко, група 3-2з
 
 ## Що зроблено
 - **Інтернет-магазин** (сайт Лаби 2 + кошик на JavaScript): кнопки «+ У кошик» на картках і сторінках товарів (з урахуванням об'єму/відтінку), лічильник у шапці, сторінка `cart.html` (кількість, видалення, сума в грн і ≈€), збереження в `localStorage`.
@@ -12,8 +12,8 @@
 - `assets/logo_640.png`, `assets/banner_1200x400.jpg` — логотип і банер для магазину / бота.
 
 ## Посилання
-- Магазин: `https://ВАШ-ЛОГІН.github.io/lileia-lab11/`
-- Правила: `https://ВАШ-ЛОГІН.github.io/lileia-lab11/rules/`
-- Бот: `https://t.me/LileiaShopBot` (username можна змінити в `content/site.json`)
+- Магазин: `https://elizavetboiko.github.io/pinolyst-lab11/`
+- Правила: `https://elizavetboiko.github.io/pinolyst-lab11/rules/`
+- Бот: `https://t.me/PinolystShopBot` (username можна змінити в `content/site.json`)
 
 Покрокові дії з ботом і хостингом — `docs/INSTRUKTSIIA.md`.

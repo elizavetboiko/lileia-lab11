@@ -1,4 +1,4 @@
-/* «Лілея» — кошик і тестова оплата WayForPay.
+/* Кошик і тестова оплата WayForPay.
    Кошик зберігається в localStorage браузера, тож товари не зникають при переході між сторінками.
    Оплата: форма POST на https://secure.wayforpay.com/pay з ПУБЛІЧНИМ ТЕСТОВИМ мерчантом WayForPay.
    УВАГА: секретний ключ у браузері допустимий лише для тестового мерчанта. Для справжнього магазину
@@ -14,8 +14,8 @@
     language: "UA"
   };
   var RATE = 49.99;                                   // курс НБУ на 17.11.2026, 1 € = 49,99 грн
-  var KEY = "lileia-cart-v1";
-  var PRODUCTS = window.LILEIA_PRODUCTS || {};
+  var KEY = "pinolyst-cart-v1";
+  var PRODUCTS = window.SHOP_PRODUCTS || {};
   var ROOT = document.documentElement.getAttribute("data-root") || "";
   var memory = [];
 
@@ -144,7 +144,7 @@
       var li = document.createElement("li");
       li.className = "cart-line";
       li.innerHTML =
-        '<a class="cl-img" href="' + p.url + '"><img src="images/products/' + p.id + '-1.svg" alt="" width="96" height="96"></a>' +
+        '<a class="cl-img" href="' + p.url + '"><img src="' + (p.img || ("images/products/" + p.id + "-1.svg")) + '" alt="" width="96" height="96"></a>' +
         '<div class="cl-info"><a class="cl-name" href="' + p.url + '">' + escapeHtml(p.name) + "</a>" +
         (opts ? '<span class="cl-opts">' + opts + "</span>" : "") +
         '<span class="cl-unit">' + fmt(p.price) + " грн / шт.</span></div>" +
@@ -218,7 +218,7 @@
     var order = {
       merchantAccount: WFP.merchantAccount,
       merchantAuthType: "SimpleSignature",
-      merchantDomainName: location.hostname || "lileia.example.com",
+      merchantDomainName: location.hostname || "pinolyst.example.com",
       orderReference: "LL-" + Date.now(),
       orderDate: Math.floor(Date.now() / 1000),
       amount: String(total(lines)),
@@ -236,7 +236,7 @@
     };
     var delivery = f.get("delivery") + (f.get("delivery") === "Самовивіз" ? "" : ", " + f.get("city") + ", " + f.get("branch"));
     try {
-      window.localStorage.setItem("lileia-last-order", JSON.stringify({
+      window.localStorage.setItem("pinolyst-last-order", JSON.stringify({
         ref: order.orderReference, amount: order.amount, delivery: delivery, comment: f.get("comment") || "", items: order.productName
       }));
     } catch (e) { /* не критично */ }
@@ -318,7 +318,7 @@
     return Array.prototype.map.call(md5Bytes(outer), function (x) { return (x < 16 ? "0" : "") + x.toString(16); }).join("");
   }
 
-  window.LILEIA_CART = { add: add, load: load, hmacMd5Hex: hmacMd5Hex };
+  window.SHOP_CART = { add: add, load: load, hmacMd5Hex: hmacMd5Hex };
 
   document.addEventListener("DOMContentLoaded", function () {
     updateBadge(false);
